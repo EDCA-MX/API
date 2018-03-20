@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="API de Estandar de Datos de Contrataciones Abiertas en México">
+    <meta name="keywords" content="edca api contrataciones abiertas transparencia mexicana ocds estandar mexico">
+
+    <title>API-Docs</title>
+
+    <!-- Styles -->
+    <link href="assets/css/theDocs.all.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/skin/skin-purple.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500%7CLato:300,400' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png">
+  </head>
+
+  <body>
+
+    <header class="site-header">
+
+      <!-- Top navbar & branding -->
+      <nav class="navbar navbar-default">
+        <div class="container">
+
+          <!-- Toggle buttons and brand -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+              <span class="glyphicon glyphicon-option-vertical"></span>
+            </button>
+
+            <button type="button" class="navbar-toggle for-sidebar" data-toggle="offcanvas">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a>
+          </div>
+          <!-- END Toggle buttons and brand -->
+
+          <!-- Top navbar -->
+          <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" role="banner">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="index.html">Inicio</a></li>
+
+              <li><a href="https://github.com/EDCA-MX/API/issues">Soporte</a></li>
+              <li class="hero"><a href="https://tm-api-tests.herokuapp.com/">Explorar</a></li>
+            </ul>
+          </div>
+          <!-- END Top navbar -->
+
+        </div>
+      </nav>
+      <!-- END Top navbar & branding -->
+    </header>
+
+
+    <main class="container">
+      <div class="row">
+
+        <!-- Main content -->
+        <article class="col-md-9 col-sm-9 main-content" role="main">
+          
+          <header>
+            <h1>Querys</h1>
+            <p>Para realizar consultas a nuestra API es necesario hacerlo a través de Querys. Estas nos permiten especificar una estructura de datos tipo JSON que al ser evaluada por el servidor nos regresará un objeto con los campos especificados.</p>
+            <p>A continuación se presentan tres ejemplos de consulta a la API para clarificar el concepto de Query.</p>
+
+          </header>
+
+          <section>
+              <!-- Code Window *********************************************************** -->
+              <h3 id="publisher">Publicador</h3>
+              <p>Si queremos consultar quien es el publicador de cierto paquete de información de Contratación Abierta, procederemos a crear una query que nos permita obtener un objeto con la informacion deseada.</p>
+              <p>Como solo queremos saber el nombre del publicador, basta con especificar dicho campo dentro de la query.</p>
+             
+             
+              <div class="code-window">
+                <div class="query">
+                    <pre class="line-numbers"><code class="language-javascript">query {
+  lastRecord {
+    publisher {
+      name
+    } 
+  } 
+}</code></pre>
+                </div>
+                <pre class="line-numbers"><code class="language-javascript">{
+  "data": {
+    "lastRecord": {
+      "publisher": {
+        "name": "Transparencia Mexicana"
+      }
+    }
+  }
+}</code>
+                </pre>
+              </div>
+            </section>
+
+          <section>
+            <!-- Code Window *********************************************************** -->
+            <h3 id="tenderers">Licitantes</h3>
+            <p>En el caso de que los datos de interés tengan "mayor profundidad" dentro del conjunto de datos, se deben especificar los campos de forma anidada.</p>
+            <p>La siguiente query nos permite consultar únicamente los nombres de los licitantes que han participado en el procedimiento de contratación.</p>
+            <div class="code-window">
+              <div class="query">
+                  <pre class="line-numbers"><code class="language-javascript">query {
+
+  lastRecord {
+
+    releases {
+
+      tender {
+
+        tenderers {
+
+            name
+
+        } 
+    
+      }
+    } 
+  }
+} </code></pre>
+              </div>
+              <pre class="line-numbers"><code class="language-javascript">{
+  "data": {
+    "lastRecord": {
+      "releases": [
+        {
+          "tender": {
+            "tenderers": [
+              {
+                "name": "FCC AQUALIA, S.A. A. EN P. CON AQUALIA MÉXICO, S.A. DE C.V."
+              },
+              {
+                "name": "ACCIONA AGUA, S.A.U. A. EN P. CON LA PENINSULAR COMPAÑÍA CONSTRUCTORA ..."
+              },
+              {
+                "name": "QUÍMICA APOLLO S.A. DE C.V. A. EN P. CON RWL DESAL HOLDING, S. DE R.L...."
+              },
+              {
+                "name": "TEDAGUA MÉXICO, S.A. DE C.V. A. EN P. CON AVANZIA INSTALACIONES, S.A. ..."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}</code>
+              </pre>
+            </div>
+          </section>
+
+
+
+
+
+            <section>
+                <!-- Code Window *********************************************************** -->
+                <h3 id="budget">Presupuesto</h3>
+                <p>Como se puede observar, la estructura del query es muy similar a la estructura de la respuesta en formato JSON.</p>
+                <p>La siguiente query nos permite realizar una consulta del presupuesto establecido durante la etapa de planeación del procedimiento de Contratación Abierta.</p>
+                <div class="code-window">
+                  <div class="query">
+                      <pre class="line-numbers"><code class="language-javascript">query {
+  lastRecord {
+
+      releases {
+
+          planning {
+              budget {
+                  amount {
+                      amount
+                      currency
+                  }
+              }
+          }
+      
+        }
+    } 
+}                   
+                        </code></pre>
+                  </div>
+                  <pre class="line-numbers"><code class="language-javascript">{
+"data": { 
+  "lastRecord": {
+      "releases": [
+        {
+          "planning": {
+            "budget": {
+              "amount": {
+                "amount": 345318760.36,
+                "currency": "MXN"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}</code>
+                  </pre>
+                </div>
+              </section>
+          
+        </article>
+        <!-- END Main content -->
+
+        <!-- Sidebar -->
+        <aside class="col-md-3 col-sm-3 sidebar">
+
+          <ul  class="sidenav dropable sticky">
+            <li ><a href="index.html">Descripción</a>
+              <ul>
+                <li><a href="overview.html#endpoint">Endpoint</a></li>
+                <li><a href="overview.html">Autenticación</a></li>
+                <li><a href="overview.html">Limite de llamadas</a></li>
+              </ul>
+            </li>
+            <li class="active">
+              <a  href="querys.html">Querys</a>
+              <ul>
+                <li><a href="querys.html#publisher">Publicador</a></li>
+                <li><a href="querys.html#tenderers">Licitantes</a></li>
+                <li><a href="querys.html#budget">Presupuesto</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="schema.html">Schema</a>
+              <ul>
+                <li><a href="schema.html#global_data">Datos Globales</a></li>
+                <li><a href="schema.html#parties">Organizaciones</a></li>
+                <li><a href="schema.html#planning">Planeación</a></li>
+                <li><a href="schema.html#tender">Licitación</a></li>
+              </ul>
+            </li>
+
+
+            <!-- <li>
+              <a href="#">Menu level</a>
+              <ul class="dropable">
+                <li><a href="#">Level 1</a></li>
+                <li>
+                  <a href="#">Level 1</a>
+                  <ul>
+                    <li><a href="#">Level 2</a></li>
+                    <li>
+                      <a href="#">Level 2</a>
+                      <ul>
+                        <li><a href="#">Level 3</a></li>
+                        <li><a href="#">Level 3</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Level 2</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Level 1</a></li>
+                <li><a href="#">Level 1</a></li>
+              </ul>
+            </li> -->
+
+          </ul>
+
+        </aside>
+        <!-- END Sidebar -->
+
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <a id="scroll-up" href="#"><i class="fa fa-angle-up"></i></a>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <p>Copyright &copy; 2018. Todos los derechos reservados</p>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <ul class="footer-menu">
+              <!-- <li><a href="page_changelog.html">Actualizaciones</a></li>
+              <li><a href="mailto:support@thetheme.io">Contacto</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END Footer -->
+
+    <!-- Scripts -->
+    <script src="assets/js/theDocs.all.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>

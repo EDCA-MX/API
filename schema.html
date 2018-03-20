@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>API-Docs</title>
+
+    <!-- Styles -->
+    <link href="assets/css/theDocs.all.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/skin/skin-purple.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500%7CLato:300,400' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png">
+  </head>
+
+  <body>
+
+    <header class="site-header">
+
+      <!-- Top navbar & branding -->
+      <nav class="navbar navbar-default">
+        <div class="container">
+
+          <!-- Toggle buttons and brand -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+              <span class="glyphicon glyphicon-option-vertical"></span>
+            </button>
+
+            <button type="button" class="navbar-toggle for-sidebar" data-toggle="offcanvas">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a>
+          </div>
+          <!-- END Toggle buttons and brand -->
+
+          <!-- Top navbar -->
+          <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" role="banner">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="index.html">Inicio</a></li>
+
+              <li><a href="https://github.com/EDCA-MX/API/issues">Soporte</a></li>
+              <li class="hero"><a href="https://graphqlbin.com/OYO0f2">Explorar</a></li>
+            </ul>
+          </div>
+          <!-- END Top navbar -->
+
+        </div>
+      </nav>
+      <!-- END Top navbar & branding -->
+    </header>
+
+
+    <main class="container">
+      <div class="row">
+
+        <!-- Main content -->
+        <article class="col-md-9 col-sm-9 main-content" role="main">
+          
+          <header>
+            <h1>Esquema de Datos</h1>
+            <p>                
+              A continuación se presenta el esquema que siguen los datos que esta API provee, cabe destacar que este <i>schema</i> sigue todas las rúbricas establecidas por el <a class="reference external" href="http://standard.open-contracting.org/latest/es/schema">Open Contracting Data Standard</a> 
+            </p>
+
+          </header>
+
+          <section>
+              <h2 id="global_data">Datos Globales</h2>
+              <p>Con el objetivo de documentar el procedimiento de contratación, se realizan entregas periódicas de datos que se van generando durante las diferentes etapas del procedimiento de contratación. Una entrega es un conjunto de datos generados en un periodo especifico, a cada una de estas entregas se le
+                asigna un identificador único utilizado para ligar un paquete de entregas global.
+              </p>
+              <div class="code-window">
+                <div class="code-preview">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Campo</th>
+                          <th>Tipo de dato</th>
+                          <th>Descripción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="row-odd">
+                          <td colspan="1"><code class="first last docutils literal"><span class="pre">ocid</span></code></td>
+                          <td colspan="1">String!</td>
+                          <td colspan="1">Identificador único del Proceso de Contratación Abierta. Este identificador fue asignado conforme a las rúbricas de la <a class="reference external" href="http://standard.open-contracting.org/latest/es/schema/identifiers/">Open Contracting Identifier guidance</a></td>
+                          </tr>
+                              
+                          <tr class="row-even">
+                          <td colspan="1"><code class="first last docutils literal"><span class="pre">id</span></code>
+                          </td>
+                          <td colspan="1">String!</td>
+                          <td colspan="1">Identificador único de la entrega/actualización  de datos.</td>
+                          </tr>
+                          <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">date</span></code></td>
+                          <td colspan="1">String!</td>
+                          <td colspan="1">Fecha en la cual esta información se publicó por primera vez.</td>
+                          </tr>
+                          <tr class="row-odd"><td colspan="1"><code class="first last docutils literal"><span class="pre">tag</span></code></td>
+                            <td colspan="1">[String]</td>
+                            <td colspan="1">Uno o más valores de la lista de códigos <a class="reference external" href="http://standard.open-contracting.org/latest/es/schema/codelists/#release-tag">releaseTag</a>. Las etiquetas se pueden usar para filtrar las entregas y entender el tipo de información que puede contener una entrega.</td>
+                            </tr>
+                          </tr>                          
+                          <tr class="row-odd"><td colspan="1"><code class="first last docutils literal"><span class="pre">title</span></code></td>
+                            <td colspan="1">String</td>
+                            <td colspan="1">Título descriptivo de la entrega o actualización de datos.</td>
+                            </tr>
+                          </tr>
+                          <tr class="row-odd"><td colspan="1"><code class="first last docutils literal"><span class="pre">description</span></code></td>
+                            <td colspan="1">String</td>
+                            <td colspan="1">Descripción de la entrega o actualización de datos.</td>
+                            </tr>
+                          </tr>
+                          <tr class="row-odd"><td colspan="1"><code class="first last docutils literal"><span class="pre">language</span></code></td>
+                            <td colspan="1">String</td>
+                            <td colspan="1">Especifica el idioma por defecto de los datos usando etiquetas de idioma de dos dígitos <a class="reference external" href="https://es.wikipedia.org/wiki/ISO_639-1">ISO639-1</a>.</td>
+                            </tr>
+                          </tr>
+                          <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">initiationType</span></code></td>
+                            <td colspan="1">String!</td>
+                            <td colspan="1">
+                              Cadena que especifica el tipo de proceso de inicio utilizado para este contrato, tomado de la lista de códigos de <a class="reference external" href="http://standard.open-contracting.org/latest/es/schema/codelists/#initiation-type">initiationType</a>.    
+                              Actualmente sólo se soporta el valor de "licitación" (tender).
+                            </td>
+                          </tr>
+                          <tr class="row-even">
+                              <td colspan="1"><code class="first last docutils literal"><span class="pre">parties</span></code></td>
+                              <td colspan="1">[<a class="reference external" href="#parties">Organization</a>]</td>
+                              <td colspan="4">La información de las partes involucradas (organizaciones, operadores económicos y otros participantes) en el proceso de contrataciones y sus roles, por ejemplo: comprador, entidad contratante, proveedor, etc. Se utiliza referencias de organización en otras partes del esquema para hacer referencia a las entradas en esta lista.
+                              </td>
+                          </tr>
+                          <tr class="row-even">
+                              <td colspan="1"><code class="first last docutils literal"><span class="pre">planning</span></code></td>
+                              <td colspan="1">Planning</td>
+                              <td colspan="4">Información sobre la fase de  <a class="reference external" href="#parties">planeación</a>  del proceso de contratación. Esto incluye información relacionada con el proceso de decidir qué contratar, cuándo y cómo.</td>
+                          </tr>
+                          <tr class="row-even">
+                              <td colspan="1"><code class="first last docutils literal"><span class="pre">tender</span></code></td>
+                              <td colspan="1">Tender</td>
+                              <td colspan="4">Objeto que contiene los datos relacionados a la etapa de <a class="reference external" href="#parties">licitación</a> del procedimeinto de contratación.</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section >
+                <h2 id="parties">Organizaciones</h2>
+                <p>
+                  La información de las partes involucradas (organizaciones, operadores económicos y otros participantes) que están involucrados en el proceso de contrataciones y sus roles, por ejemplo: comprador, entidad contratante, proveedor, etc. Se utiliza referencias de organización en otras partes del esquema para hacer referencia a las entradas en esta lista.
+                </p>
+                <div class="code-window">
+                  <div class="code-preview">
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Campo</th>
+                            <th>Tipo de dato</th>
+                            <th>Descripción</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row-odd">
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">id</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Identificador de la organización.</td>
+                              </tr>
+                                  <td colspan="1"><code class="first last docutils literal"><span class="pre">identifier</span></code></td>
+                                  <td colspan="1">Identifier</td>
+                                  <td colspan="1">Detalles especificos de la organización (RFC, nombre legal, esquema, etc.)<a class="reference external" href="http://standard.open-contracting.org/{{version}}/{{lang}}/schema/identifiers/"></a></td>
+                              </tr>
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">address</span></code></td>
+                                <td colspan="1">Address</td>
+                                <td colspan="1">Dirección de la organizacion</td>
+                              </tr>
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">contactPoint</span></code></td>
+                                <td colspan="1">ContactPoint</td>
+                                <td colspan="1">Datos de contacto de la organización.</td>
+                              </tr>
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">roles</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Tipo de participación que tiene la organización en el procedimiento de contratación.</td>
+                              </tr>
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">details</span></code></td>
+                                <td colspan="1">[Details]</td>
+                                <td colspan="1">Detalles adicionales de la organización.</td>
+                              </tr>
+                                <td colspan="1"><code class="first last docutils literal"><span class="pre">shareholders</span></code></td>
+                                <td colspan="1">[Shareholder]</td>
+                                <td colspan="1">Datos de los accionistas que conforman la organización.</td>
+                              </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section>
+                  <h2 id="planning">Planeación</h2>
+                  <p>
+                    Información sobre la fase de planeación del proceso de contratación. Esto incluye información relacionada con el proceso de decidir qué contratar, cuándo y cómo.
+                  </p>
+                  <div class="code-window">
+                    <div class="code-preview">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>Campo</th>
+                              <th>Tipo de dato</th>
+                              <th>Descripción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                              <tr class="row-even">
+                                  <td colspan="1"><code class="first last docutils literal"><span class="pre">rationale</span></code></td>
+                                  <td colspan="1">[String]</td>
+                                  <td colspan="1">Justificación de la contratación.</td>
+                                </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">budget</span></code></td>
+                                  <td colspan="1">Budget</td>
+                                  <td colspan="1">Datos específicos del presupuesto.</td>
+                                </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">documents</span></code></td>
+                                <td colspan="1">[Documentation]</td>
+                                <td colspan="1">Lista de documentos relacionados al proceso de licitación.</td>
+                                </tr>
+                                <tr class="row-odd"><td colspan="1"><code class="first last docutils literal"><span class="pre">milestones</span></code></td>
+                                <td colspan="1">[Milestone]</td>
+                                <td colspan="1">Lista de hitos relacionados con la etapa de licitación.</td>
+                                </tr>
+ 
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">project</span></code></td>
+                                <td colspan="1">Project</td>
+                                <td colspan="1">Esta sección puede contener información de proyectos relacionados con el procedimiento de contratación.</td>
+                                </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">forecasts</span></code></td>
+                                <td colspan="1">[Metric]</td>
+                                <td colspan="1">Cualquier tipo de métrica o pronóstico establecido para el procedimiento de contratación.</td>
+                                </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                    <h2 id="tender">Licitación</h2>
+                    <p>Esta etapa de la contratación se refiere al proceso de selección, en la cual se convoca a que distintos
+                      proveedores presenten ofertas. Este apartado está diseñado para almacenar información acorde al ti-
+                      po de procedimiento que se llevará a cabo. Durante la etapa de licitación se generan datos tales como
+                      la cantidad y las unidades en las que se comprarán los productos o servicios y también se establecen
+                      los requisitos que los concursantes deben cumplir para poder participar en las distintas etapas del con-
+                      curso.</p>
+                    <div class="code-window">
+                      <div class="code-preview">
+                        <div class="table-responsive">
+                          <table class="table table-bordered table-striped">
+                            <thead>
+                              <tr>
+                                <th>Campo</th>
+                                <th>Tipo de dato</th>
+                                <th>Descripción</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">id</span></code></td>
+                                <td colspan="1">String!</td>
+                                <td colspan="1">Identificador para del proceso de Licitación..</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">title</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Titulo del procedimiento de Licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">description</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Resumen descriptivo del procedimiento de Licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">status</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Estado del procedimiento de licitación al momento de registrar los datos.</a></td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">procuringEntity</span></code></td>
+                                <td colspan="1">ProcuringEntity</td>
+                                <td colspan="1">Entidad convocante del Procedimiento de Licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">items</span></code></td>
+                                <td colspan="1">[Item]</td>
+                                <td colspan="1">Bienes y servicios por adquirir registrados durante el procedimiento de Licitacion.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">value</span></code></td>
+                                <td colspan="1">Value</td>
+                                <td colspan="1">El valor tope estimado para la adquisición. Un valor negativo indica que el proceso de contratación puede implicar pagos del proveedor al comprador (comúnmente utilizado en los contratos de concesión)</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">minValue</span></code></td>
+                                <td colspan="1">Value</td>
+                                <td colspan="1">El valor minimo estimado para la adquisición. Un valor negativo indica que el proceso de contratación puede implicar pagos del proveedor al comprador (comúnmente utilizado en los contratos de concesión)</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">procurementMethod</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Tipo de Licitación utilizado para el procedimiento de contratación</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">procurementMethodDetails</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Detalles adicionales sobre el tipo de licitación utilizado.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">procurementMethodRationale</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Justificación para el tipo de Licitación utilizado.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">mainProcurementCategory</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Categoría principal que describe el objeto del procedimiento de contratación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">additionalProcurementCategories</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Categorias adicionale que describen el objeto del procedimiento de contratación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">awardCriteria</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Criterios de adjudicación para la adquisición <a class="reference external" href="http://standard.open-contracting.org/{{version}}/{{lang}}/schema/codelists/#award-criteria">award criteria codelist</a></td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">awardCriteriaDetails</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Detalles adicionales sobre el criterio de adjudicación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">submissionMethod</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Especifica el metodo por el cual las ofertas deben ser presentadas, en persona, por escrito, o mediante licitacion electronica.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">submissionMethodDetails</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Mas informacion detallada sobre el metodo de presentacion de interes. Esto incluye la direccion, el correo electronico o el servicio en linea en el cual las ofertas deben ser presentadas.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">tenderPeriod</span></code></td>
+                                <td colspan="1">Period</td>
+                                <td colspan="1">Detalles del periodo de Licitación. Esto incluye fecha de inicio, fin y duración total del período.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">enquiryPeriod</span></code></td>
+                                <td colspan="1">Period</td>
+                                <td colspan="1">Información relacionada con el periodo de presentación de consultas.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">hasEnquiries</span></code></td>
+                                <td colspan="1">Boolean</td>
+                                <td colspan="1">Un campo verdadero/falso para indicar si se recibió alguna consulta durante el proceso de licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">eligibilityCriteria</span></code></td>
+                                <td colspan="1">[String]</td>
+                                <td colspan="1">Una descripcion de cualquier criterio de eligibilidad para cualquier proveedor potencial.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">awardPeriod</span></code></td>
+                                <td colspan="1">Period</td>
+                                <td colspan="1">Información acerca del periodo de adjudicación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">contractPeriod</span></code></td>
+                                <td colspan="1">Period</td>
+                                <td colspan="1">Informacion referente al período de contratación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">numberOfTenderers</span></code></td>
+                                <td colspan="1">[integer]</td>
+                                <td colspan="1">Número de licitantes.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">tenderers</span></code></td>
+                                <td colspan="1">[Organization]</td>
+                                <td colspan="1">Lista de todas las organizaciones que fungen como Licitantes.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">documents</span></code></td>
+                                <td colspan="1">[Documentation]</td>
+                                <td colspan="1">Lista de todos los documentos relacionados con el proceso de licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">milestones</span></code></td>
+                                <td colspan="1">[Milestone]</td>
+                                <td colspan="1">Lista de hitos asociados al proceso de licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">amendments</span></code></td>
+                                <td colspan="1">[Amendment]</td>
+                                <td colspan="1">Lista de modificaciones oficiales al proceso de licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">targets</span></code></td>
+                                <td colspan="1">[Metric]</td>
+                                <td colspan="1">Lista de métricas y previsiones relacionadas con el proceso de Licitación.</td>
+                              </tr>
+                                <tr class="row-even"><td colspan="1"><code class="first last docutils literal"><span class="pre">criteria</span></code></td>
+                                <td colspan="1">[Criterion]</td>
+                                <td colspan="1">Lista de criterios sobre los cuales los licitantes serán evaluados.</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+        </article>
+        <!-- END Main content -->
+
+        <!-- Sidebar -->
+        <aside class="col-md-3 col-sm-3 sidebar">
+
+          <ul  class="sidenav dropable sticky">
+            <li ><a href="index.html">Descripción</a>
+              <ul>
+                <li><a href="overview.html#endpoint">Endpoint</a></li>
+                <li><a href="overview.html">Autenticación</a></li>
+                <li><a href="overview.html">Limite de llamadas</a></li>
+                <li><a href="overview.html">Estructura del Schema</a></li>
+              </ul>
+            </li>
+            <li >
+              <a  href="querys.html">Querys</a>
+              <ul>
+                  <li><a href="querys.html#publisher">Publicador</a></li>
+                  <li><a href="querys.html#tenderers">Licitantes</a></li>
+                  <li><a href="querys.html#budget">Presupuesto</a></li>
+                </ul>
+            </li>
+
+            <li class="active">
+                <a href="schema.html">Schema</a>
+                <ul>
+                  <li><a href="schema.html#global_data">Datos Globales</a></li>
+                  <li><a href="schema.html#parties">Organizaciones</a></li>
+                  <li><a href="schema.html#planning">Planeación</a></li>
+                  <li><a href="schema.html#tender">Licitación</a></li>
+                </ul>
+              </li>
+
+
+            <!-- <li>
+              <a href="#">Menu level</a>
+              <ul class="dropable">
+                <li><a href="#">Level 1</a></li>
+                <li>
+                  <a href="#">Level 1</a>
+                  <ul>
+                    <li><a href="#">Level 2</a></li>
+                    <li>
+                      <a href="#">Level 2</a>
+                      <ul>
+                        <li><a href="#">Level 3</a></li>
+                        <li><a href="#">Level 3</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Level 2</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Level 1</a></li>
+                <li><a href="#">Level 1</a></li>
+              </ul>
+            </li> -->
+
+          </ul>
+
+        </aside>
+        <!-- END Sidebar -->
+
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <a id="scroll-up" href="#"><i class="fa fa-angle-up"></i></a>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <p>Copyright &copy; 2018. Todos los derechos reservados</p>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <ul class="footer-menu">
+              <!-- <li><a href="page_changelog.html">Actualizaciones</a></li>
+              <li><a href="mailto:support@thetheme.io">Contacto</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END Footer -->
+
+    <!-- Scripts -->
+    <script src="assets/js/theDocs.all.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>

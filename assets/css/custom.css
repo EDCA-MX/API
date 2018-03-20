@@ -1,0 +1,4 @@
+.code-snippet .code-preview::after {
+    content: "Ejemplo";
+  }
+  
