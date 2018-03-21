@@ -70,17 +70,35 @@
         <article class="col-md-9 col-sm-9 main-content" role="main">
           
           <header>
-            <h1>Esquema de Datos</h1>
-            <p>                
-              A continuación se presenta el esquema que siguen los datos que esta API provee, cabe destacar que este <i>schema</i> sigue todas las rúbricas establecidas por el <a class="reference external" href="http://standard.open-contracting.org/latest/es/schema">Open Contracting Data Standard</a> 
+            <h1>Esquema de Datos <small>¿Qué es? </small></h1>
+            
+            <p> 
+              Todas las aplicaciones utilizan un esquema (o schema)  para modelar los datos que manejan internamente. Un esquema esta 
+              formado por campos anidados que describen ordenada y jerarquicamente los datos que contiene. 
+              
+            </p>
+            <p> 
+              El esquema de datos de una contratación abierta 
+              esta definida por un nodo raíz llamado <code>record</code>. El campo record es una colección de <i>releases</i> (publicaciones), cada release hace referencia a una entrega o
+              actualización de los datos del procedimeinto de contratación.
+            </p>
+            <p> 
+              El campo <code>release</code> documenta por etapas al procedimiento de contratación,  
+              contiene la fecha en que fueron publicados por primera vez los datos, su idioma por defecto, un título descriptivo, 
+              una lista de las organizaciones involucradas, etc.
             </p>
 
+
+            
+
           </header>
+          <p> 
+              A continuación se enlistan todos los campos que puedes encontrar dentro del campo release:
+            </p>
 
           <section>
-              <h2 id="global_data">Datos Globales</h2>
-              <p>Con el objetivo de documentar el procedimiento de contratación, se realizan entregas periódicas de datos que se van generando durante las diferentes etapas del procedimiento de contratación. Una entrega es un conjunto de datos generados en un periodo especifico, a cada una de estas entregas se le
-                asigna un identificador único utilizado para ligar un paquete de entregas global.
+              <h2 id="global_data">Datos globales-.<h6><span class="label label-purple">Release</span></h6></h2>
+              <p> La siguiente tabla enlista todos los campos que puedes encontrar dentro de una publicación de datos.                
               </p>
               <div class="code-window">
                 <div class="code-preview">
@@ -145,12 +163,12 @@
                           </tr>
                           <tr class="row-even">
                               <td colspan="1"><code class="first last docutils literal"><span class="pre">planning</span></code></td>
-                              <td colspan="1">Planning</td>
+                              <td colspan="1"><a class="reference external" href="#planning">Planning</a></td>
                               <td colspan="4">Información sobre la fase de  <a class="reference external" href="#parties">planeación</a>  del proceso de contratación. Esto incluye información relacionada con el proceso de decidir qué contratar, cuándo y cómo.</td>
                           </tr>
                           <tr class="row-even">
                               <td colspan="1"><code class="first last docutils literal"><span class="pre">tender</span></code></td>
-                              <td colspan="1">Tender</td>
+                              <td colspan="1"><a class="reference external" href="#tender">Tender</a></td>
                               <td colspan="4">Objeto que contiene los datos relacionados a la etapa de <a class="reference external" href="#parties">licitación</a> del procedimeinto de contratación.</td>
                           </tr>
                       </tbody>
@@ -160,9 +178,10 @@
               </div>
             </section>
             <section >
-                <h2 id="parties">Organizaciones</h2>
+                <h2 id="parties">Organizaciones<h6><span class="label label-purple">Parties</span></h6></h2>
                 <p>
-                  La información de las partes involucradas (organizaciones, operadores económicos y otros participantes) que están involucrados en el proceso de contrataciones y sus roles, por ejemplo: comprador, entidad contratante, proveedor, etc. Se utiliza referencias de organización en otras partes del esquema para hacer referencia a las entradas en esta lista.
+                    Este es un subcampo dentro de una publicación de datos, es un subconjunto de datos que describe a cada una de las 
+                    organizaciones que tienen participación dentro del procedieminto de contratación.
                 </p>
                 <div class="code-window">
                   <div class="code-preview">
@@ -212,7 +231,7 @@
                 </div>
               </section>
               <section>
-                  <h2 id="planning">Planeación</h2>
+                  <h2 id="planning">Planeación<h6><span class="label label-purple">planning</span></h6></h2>
                   <p>
                     Información sobre la fase de planeación del proceso de contratación. Esto incluye información relacionada con el proceso de decidir qué contratar, cuándo y cómo.
                   </p>
@@ -262,7 +281,7 @@
                   </div>
                 </section>
                 <section>
-                    <h2 id="tender">Licitación</h2>
+                    <h2 id="tender">Licitación<h6><span class="label label-purple">tender</span></h6></h2>
                     <p>Esta etapa de la contratación se refiere al proceso de selección, en la cual se convoca a que distintos
                       proveedores presenten ofertas. Este apartado está diseñado para almacenar información acorde al ti-
                       po de procedimiento que se llevará a cabo. Durante la etapa de licitación se generan datos tales como
